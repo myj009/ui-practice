@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../components/Header";
 import banner from "../assets/home-banner.png";
 import HeroHome from "../components/HeroHome";
