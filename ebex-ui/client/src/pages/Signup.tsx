@@ -31,12 +31,15 @@ const SignupPage: React.FC = () => {
     e.preventDefault();
     // Submit logic here
     try {
-      const res = await axios.post("http://localhost:3001/user/signup", {
-        name: formData.fullName,
-        email: formData.email,
-        password: formData.password,
-        phone: formData.phoneNumber,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/user/signup`,
+        {
+          name: formData.fullName,
+          email: formData.email,
+          password: formData.password,
+          phone: formData.phoneNumber,
+        }
+      );
       if (res.status !== 201) {
         errRef.current!.innerText = res.data.message;
         return;

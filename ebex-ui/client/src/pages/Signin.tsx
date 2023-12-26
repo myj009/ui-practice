@@ -30,10 +30,13 @@ const Signin: React.FC = () => {
 
   const submit = async () => {
     try {
-      const res = await axios.post("http://localhost:3001/user/signin", {
-        email: formData.email,
-        password: formData.password,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/user/signin`,
+        {
+          email: formData.email,
+          password: formData.password,
+        }
+      );
 
       if (res.status !== 200) {
         errRef.current!.innerText = res.data;
