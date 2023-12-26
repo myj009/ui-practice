@@ -5,6 +5,8 @@ import logo from "../assets/ebex-logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import banner from "../assets/signup-image.png";
 import axios from "axios";
+import { useUser } from "../context/UserContext";
+import * as jwt from "jose";
 
 const Signin: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +15,7 @@ const Signin: React.FC = () => {
     rememberMe: false,
   });
 
+  const { setUser } = useUser();
   const navigate = useNavigate();
   const errRef = useRef<HTMLDivElement>(null);
 
@@ -38,7 +41,16 @@ const Signin: React.FC = () => {
       }
 
       console.log(res.data);
-      navigate("/");
+      const data = jwt.decodeJwt(res.data.token);
+      setUser({
+        email: String(data.email),
+        id: String(data.id),
+        token: res.data.token,
+        name: String(data.name),
+        phone: String(data.phone),
+      });
+      localStorage.setItem("token", res.data.token);
+      navigate("/home");
     } catch (e) {
       console.log(e);
     }

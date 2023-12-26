@@ -64,7 +64,12 @@ router.post("/signin", async (req: CustomRequest, res: Response) => {
     }
 
     jwt.sign(
-      { email: parsedUser["email"] },
+      {
+        email: parsedUser["email"],
+        name: user["name"],
+        phone: user["phone"],
+        id: user["id"],
+      },
       secret,
       (err: Error | null, encoded: String | undefined) => {
         if (err || !encoded) {

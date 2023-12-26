@@ -58,26 +58,36 @@ const SignupPage: React.FC = () => {
       formData.confirmPassword === "" ||
       !formData.termsAndConditions
     ) {
-      errRef.current!.innerText = "Please fill out all fields";
+      errRef.current
+        ? (errRef.current.innerText = "Please fill out all fields")
+        : "";
       return true;
     }
     if (formData.password !== formData.confirmPassword) {
-      errRef.current!.innerText = "Passwords do not match";
+      errRef.current
+        ? (errRef.current.innerText = "Passwords do not match")
+        : "";
       return true;
     }
     if (formData.password.length < 8) {
-      errRef.current!.innerText = "Password must be at least 8 characters";
+      errRef.current
+        ? (errRef.current.innerText = "Password must be at least 8 characters")
+        : "";
       return true;
     }
     if (formData.phoneNumber.length !== 10) {
-      errRef.current!.innerText = "Please enter a valid phone number";
+      errRef.current
+        ? (errRef.current.innerText = "Please enter a valid phone number")
+        : "";
       return true;
     }
     if (!formData.email.includes("@")) {
-      errRef.current!.innerText = "Please enter a valid email";
+      errRef.current
+        ? (errRef.current.innerText = "Please enter a valid email")
+        : "";
       return true;
     }
-    errRef.current!.innerText = "";
+    errRef.current ? (errRef.current.innerText = "") : "";
     return false;
   };
 
