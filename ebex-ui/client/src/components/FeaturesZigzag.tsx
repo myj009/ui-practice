@@ -1,7 +1,7 @@
 import React from "react";
-import feature1 from "../assets/feature1.png";
-import feature2 from "../assets/feature2.png";
-import feature3 from "../assets/feature3.png";
+import feature1 from "../assets/featureImage1.png";
+import feature2 from "../assets/featureImage2.png";
+import feature3 from "../assets/featureImage3.png";
 
 const FeaturesZigzag: React.FC = () => {
   return (
